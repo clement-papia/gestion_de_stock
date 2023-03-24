@@ -8,6 +8,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 mycursor.execute("CREATE DATABASE boutique")
+mydb.commit()
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -18,8 +19,10 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 mycursor.execute("CREATE TABLE categorie (id INT AUTO_INCREMENT PRIMARY KEY, nom VARCHAR(255))")
+mydb.commit()
 
 mycursor.execute("CREATE TABLE produit (id INT AUTO_INCREMENT PRIMARY KEY, nom VARCHAR(255), description TEXT, prix INT, quantite INT, id_categorie INT, FOREIGN KEY (id_categorie) REFERENCES categorie(id))")
+mydb.commit()
 
 sql = "INSERT INTO categorie (nom) VALUES (%s)"
 val = [
